@@ -66,10 +66,11 @@ function App({web3, accounts, contracts}) {
       })
       .on('data', newTrade => {
         if(tradeIds.has(newTrade.returnValues.tradeId)) return;
-        tradeIds.add(newTrade.returnValues.tradeId)
+        tradeIds.add(newTrade.returnValues.tradeId);
         setTrades(trades => ([...trades, newTrade.returnValues]));
       });
     setListener(listener);
+    console.log(trades);
   }
 
   const deposit = async amount => {
@@ -151,7 +152,7 @@ function App({web3, accounts, contracts}) {
     const init = async () => {
       const [balances, orders] = await Promise.all([
         getBalances(accounts[0], user.selectedToken),
-        getOrders(user.selectedToken)
+        getOrders(user.selectedToken),
       ]);
       listenToTrades(user.selectedToken);
       setUser(user => ({...user, balances}));
