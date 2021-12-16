@@ -21,7 +21,7 @@ function NewOrder({createMarketOrder, createLimitOrder}) {
     const onSubmit = (e) => {
         e.preventDefault();
         if(order.type === TYPE.MARKET) {
-          //BREAK: Below was createLimitOrder
+          //BREAK: Below used to be createLimitOrder(order.amount, order.price, order.side);
           createMarketOrder(order.amount, order.side); 
         } else {
           createLimitOrder(order.amount, order.price, order.side);
