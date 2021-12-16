@@ -1,3 +1,6 @@
+//Break: Below was missing
+const path = require("path");
+
 /**
  * Use this file to configure your truffle project. It's seeded with some
  * common settings for different networks and features like migrations,
@@ -78,6 +81,8 @@ module.exports = {
     // timeout: 100000
     enableTimeouts: false,
   },
+
+  contracts_build_directory: path.join(__dirname, "client/src/contracts"),
 
   // Configure your compilers
   compilers: {

@@ -138,9 +138,9 @@ function App({web3, accounts, contracts}) {
       }));
       const [balances, orders] = await Promise.all([
         getBalances(accounts[0], tokens[0]),
-        getOrders(tokens[0])
+        getOrders(tokens[0]),
       ]);
-      listenToTrades(tokens[0]);
+      listenToTrades(tokens[0])
       setTokens(tokens);
       setUser({accounts, balances, selectedToken: tokens[0]});
       setOrders(orders);
@@ -180,13 +180,13 @@ function App({web3, accounts, contracts}) {
       <main className="container-fluid">
         <div className="row">
           <div className="col-sm-4 first-col">
-            <Wallet
+            <Wallet 
               user={user}
               deposit={deposit}
               withdraw={withdraw}
             />
             {user.selectedToken.ticker !== 'DAI' ? (
-              <NewOrder
+              <NewOrder 
                 createMarketOrder={createMarketOrder}
                 createLimitOrder={createLimitOrder}
               />
@@ -203,10 +203,12 @@ function App({web3, accounts, contracts}) {
               <MyOrders
                 orders={{
                   buy: orders.buy.filter(
-                    order => order.trader.toLowerCase() === user.accounts[0].toLowerCase()  
+                    // Break:  Below used to be user.accounts[0].toLowerCase()
+                    order => order.trader.toLowerCase() === accounts[0].toLowerCase()  
                   ),
                   sell: orders.sell.filter(
-                    order => order.trader.toLowerCase() === user.accounts[0].toLowerCase()
+                    // Break:  Below used to be user.accounts[0].toLowerCase()
+                    order => order.trader.toLowerCase() === accounts[0].toLowerCase()
                   )
                 }}
               />
